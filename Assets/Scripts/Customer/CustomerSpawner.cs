@@ -5,8 +5,12 @@ using System;
 
 public class CustomerSpawner : MonoBehaviour
 {
-    public GameObject[] customer; 
+    [Header("Customer Settings")]
+    public GameObject[] customerType; 
     public float minSpawnTimer, maxSpawnTimer;
+
+    [Header("Exit Waypoints")]
+    [SerializeField] private Transform[] waypoints; 
 
     private static int customerSpawnLimit = 10; 
 
@@ -26,9 +30,18 @@ public class CustomerSpawner : MonoBehaviour
             StartCoroutine(SpawnTrigger());
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.GetComponent<CustomerPatience>())
+        {
+            for (int x = 0; x < waypoints.Length; x++)
+            { other.GetComponent<CustomerPatience>().GetWaypoints(waypoints[x], x); }
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Customer") && customerSpawnLimit != 0) 
+        if (other.CompareTag("Customer") || other.CompareTag("Trigger") && customerSpawnLimit != 0) 
         { 
             StartCoroutine(SpawnCustomer());
             customerSpawnLimit --;
@@ -42,14 +55,14 @@ public class CustomerSpawner : MonoBehaviour
 
         yield return new WaitForSeconds(spawnTime);
         
-        int customerType = UnityEngine.Random.Range(0, this.customer.Length -2);
-        GameObject customer = Instantiate(this.customer[customerType]);
+        int customerType = UnityEngine.Random.Range(0, this.customerType.Length -2);
+        GameObject customer = Instantiate(this.customerType[customerType]);
         customer.transform.position = transform.position;        
     }
 
     IEnumerator SpawnTrigger()
     {
-        GameObject customer = Instantiate(this.customer[this.customer.Length - 1]);
+        GameObject customer = Instantiate(customerType[customerType.Length - 1]);
         customer.transform.position = transform.position;
         float spawnTime = UnityEngine.Random.Range(minSpawnTimer, maxSpawnTimer);
 
@@ -57,8 +70,9 @@ public class CustomerSpawner : MonoBehaviour
 
         customer.transform.position = Vector3.forward;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
 
         Destroy(customer); 
     }
+
 }
