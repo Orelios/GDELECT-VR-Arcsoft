@@ -14,17 +14,28 @@ public class Plate : MonoBehaviour
         {
             if (other.GetComponent<Food>().food.foodType == MainOrSideDish.Steak)
             {
-                transform.GetChild(0).GetComponent<MeshFilter>().mesh 
-                    = other.GetComponent<MeshFilter>().mesh;
+                GetFoodModel(1, other.gameObject); 
                 steak = other.GetComponent<Food>().TypeOfSteak(); 
             }
             else
             {
-                transform.GetChild(1).GetComponent<MeshFilter>().mesh
-                    = other.GetComponent<MeshFilter>().mesh;
+                GetFoodModel(1, other.gameObject);
                 sideDish = other.GetComponent<Food>().food.foodType; 
             }
         }
+    }
+
+    private void GetFoodModel(int childNum, GameObject other)
+    {
+        transform.GetChild(childNum).GetComponent<MeshFilter>().mesh
+            = other.GetComponent<MeshFilter>().mesh;
+
+        transform.GetChild(childNum).GetComponent<MeshCollider>().sharedMesh
+            = other.GetComponent<MeshFilter>().mesh;
+
+        Material[] materials = other.GetComponent<MeshRenderer>().materials;
+        for (int x = 0; x < materials.Length; x++)
+        { transform.GetChild(childNum).GetComponent<MeshRenderer>().materials[x] = materials[x]; }
     }
 
     public SteakType Steak(){return steak;}

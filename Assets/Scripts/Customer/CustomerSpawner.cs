@@ -17,7 +17,7 @@ public class CustomerSpawner : MonoBehaviour
     private void Start()
     { 
         int spawnCustomerAtStart = UnityEngine.Random.Range(1, 4);
-        Debug.Log(spawnCustomerAtStart);
+
         if (customerSpawnLimit != 0 && spawnCustomerAtStart == 1 ||
             spawnCustomerAtStart == 2)
         {
@@ -33,7 +33,7 @@ public class CustomerSpawner : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.GetComponent<CustomerPatience>())
+        if (other.GetComponent<CustomerPatience>() != null)
         {
             for (int x = 0; x < waypoints.Length; x++)
             { other.GetComponent<CustomerPatience>().GetWaypoints(waypoints[x], x); }
@@ -45,7 +45,6 @@ public class CustomerSpawner : MonoBehaviour
         { 
             StartCoroutine(SpawnCustomer());
             customerSpawnLimit --;
-            Debug.Log(customerSpawnLimit);
         }
     }
 

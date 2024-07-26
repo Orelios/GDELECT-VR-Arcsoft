@@ -11,7 +11,7 @@ public class CustomerOrder : MonoBehaviour
     [SerializeField] private Order customerOrder;
 
     public UnityEvent onFoodRecieved;
-    public bool isRightSteak = false;
+    public bool isRightSteak;
     private bool isRightSideDish; 
     private void OnEnable()
     {
@@ -23,7 +23,6 @@ public class CustomerOrder : MonoBehaviour
     {
         if(other.gameObject.GetComponent<Plate>() != null) 
         { 
-            onFoodRecieved.Invoke();
             CheckFood(other.gameObject.GetComponent<Food>().TypeOfSteak(), 
                 other.gameObject.GetComponent<Food>().food.foodType); 
         }

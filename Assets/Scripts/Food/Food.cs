@@ -8,6 +8,7 @@ public class Food : MonoBehaviour
     [SerializeField] private SteakType steakType; 
     private GameObject _foodModel;
     private string _foodName;
+    [SerializeField]private bool _steakCooked; 
 
     public enum SteakType
     {
@@ -18,19 +19,18 @@ public class Food : MonoBehaviour
         WellDone,
         Burnt
     }
-    private void Start()
+    private void OnEnable()
     {
         _foodName = food.name;
         _foodModel = food.foodmodel;
+        _steakCooked = false;
     }
-
     public string FoodName(){return _foodName;}
     public GameObject FoodModel(){return _foodModel;}
 
-    public SteakType TypeOfSteak()
-    {
-        return steakType; 
-    }
+    public SteakType TypeOfSteak(){return steakType; }
+
+    public void ChangeSteak(SteakType steak) { steakType = steak; }
 
     //for cooking steak
     public SteakType CookSteak(SteakType steak, GameObject steakModel)
@@ -39,4 +39,7 @@ public class Food : MonoBehaviour
         _foodModel = steakModel;
         return steakType;
     }
+
+    public bool steakCooked() {  return _steakCooked;}
+    public void SteakAlreadyCooked() {  _steakCooked = true;}
 }
