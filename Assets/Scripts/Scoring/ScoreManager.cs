@@ -1,0 +1,105 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro; 
+
+public class ScoreManager : MonoBehaviour
+{
+    [Header("CustomerCounterWaitTimeSettings")]
+    [SerializeField] private float CustomerCounterWaitTime;
+    private float CustomerWaitTimer;
+
+    [Header("BonusPointsSettings")]
+    [SerializeField] private float bonusPointsActiveTime;
+    private float bonusPointsTimer;
+
+    [Header("CustomerCounterLimit")]
+    [SerializeField] private int customerServedLimit;
+    [SerializeField]private int customerServedCounter;
+    
+    private Image CustomerTimerBar;
+    private TMP_Text customerServedCountText;
+
+    private bool isCustomerComboWindowTrue;
+    private bool isBonusPointsActive; 
+     
+    void Start()
+    {
+        isCustomerComboWindowTrue = true;
+        isBonusPointsActive = true;
+        customerServedCounter = 0;
+        CustomerWaitTimer = CustomerCounterWaitTime;
+        bonusPointsTimer = bonusPointsActiveTime;
+        CustomerTimerBar = transform.GetChild(0).transform.
+            GetChild(1).transform.GetChild(0).GetComponent<Image>();
+        customerServedCountText = transform.GetChild(0).
+            transform.GetChild(0).GetComponent<TMP_Text>();
+        transform.GetChild(0).gameObject.SetActive(false);
+        //StartCoroutine(CustomerCountComboWindow());
+    }
+
+    public void AddCustomerCount() 
+    {
+        if (customerServedCounter != customerServedLimit) 
+        { customerServedCounter++; }
+
+        if(CustomerWaitTimer == CustomerCounterWaitTime) 
+        { StartCoroutine(CustomerCountComboWindow()); }
+
+        if (customerServedCounter == customerServedLimit) 
+        { ExtendBonusPointsTime(); }
+    }
+
+    private void ExtendBonusPointsTime() 
+    { 
+        bonusPointsTimer += bonusPointsActiveTime/4; 
+        if(bonusPointsTimer > bonusPointsActiveTime) 
+        { bonusPointsTimer = bonusPointsActiveTime; }
+    } 
+
+    IEnumerator CustomerCountComboWindow()
+    {
+        transform.GetChild(0).gameObject.SetActive(true);
+        while (isCustomerComboWindowTrue == true)
+        {
+            CustomerWaitTimer -= Time.deltaTime;
+            CustomerTimerBar.fillAmount = CustomerWaitTimer / CustomerCounterWaitTime;
+
+            customerServedCountText.text = "Customers Served: " + 
+                customerServedCounter + "/" + customerServedLimit;
+
+            if(customerServedCounter == customerServedLimit) //customerServedCounter == customerServedLimit
+            {
+                isBonusPointsActive = true;
+                CustomerTimerBar.fillAmount = 1;
+                transform.GetChild(0).gameObject.SetActive(false);
+                bonusPointsTimer = bonusPointsActiveTime;               
+                customerServedCountText.text = "";
+                StartCoroutine(BonusPointsActive());
+                isCustomerComboWindowTrue = false;
+            }
+            yield return null;
+        }
+ 
+    }
+    IEnumerator BonusPointsActive() 
+    {      
+        transform.GetChild(0).gameObject.SetActive(true);
+        customerServedCountText.text = "Magister Mode";
+        while (bonusPointsTimer >= 0)
+        {
+            bonusPointsTimer -= Time.deltaTime;
+            CustomerTimerBar.fillAmount = bonusPointsTimer / bonusPointsActiveTime;
+            if (bonusPointsTimer <= 0.1)
+            {
+                customerServedCounter = 0;
+                customerServedCountText.text = "";
+                CustomerTimerBar.fillAmount = 1;
+                CustomerWaitTimer = CustomerCounterWaitTime;
+                transform.GetChild(0).gameObject.SetActive(false);
+            }
+            yield return null;
+        }
+    }
+}

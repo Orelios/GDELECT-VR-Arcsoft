@@ -7,6 +7,7 @@ TagManager:
   - Customer
   - Trigger
   - CookingTimerImage
+  - Pan
   layers:
   - Default
   - TransparentFX

@@ -2,75 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro; 
 using static Food;
 
 public class Cooking : MonoBehaviour
 {
+    [Header("Steak Cooking Times")]
     [SerializeField] private float[] steakCookTimes;
-    [SerializeField] private GameObject[] steaks;
-    [SerializeField] private SteakType[] steakType;
+    [Header("Steak Types")]
+    [SerializeField] private Food[] steaks;
+    [SerializeField] private SteakType[] steakTypes; 
+    [SerializeField] private Image cookTimerImage; 
 
-    private bool isCooking;
-    private float cookingTimer;
-    private GameObject cookingTimerImage;
-    private GameObject _steak;
-    private int ChangeSteak; 
+    private float cookTimer;
+    private int changeSteak; 
+    private bool steakCooked;
+    
 
-    private void Start()
+    private void OnEnable()
     {
-        cookingTimerImage = GameObject.FindGameObjectWithTag("CookingTimerImage");
-        cookingTimerImage.GetComponent<Image>().fillAmount = 0; 
-        cookingTimerImage.SetActive(false);
-        isCooking = true;
-        _steak = steaks[0];
-        ChangeSteak = 0; 
+        steakCooked = false;
+        cookTimer = 0;
+        changeSteak = 1;
+        cookTimerImage.fillAmount = 0;
+        transform.GetChild(0).gameObject.SetActive(false);
     }
-    private void OnTriggerStay(Collider other) 
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<Food>() != null && other.GetComponent<Food>().TypeOfSteak() 
-            != SteakType.NotSteak && other.GetComponent<Food>().steakCooked() == false) 
+        if (other.gameObject.CompareTag("Pan")) 
         {
-            isCooking = true;
-            cookingTimerImage.SetActive(true);
-            CookSteak();
-            other.gameObject.GetComponent<Food>().
-                CookSteak(_steak.GetComponent<Food>().TypeOfSteak(), _steak);
-            Debug.Log(other.GetComponent<Food>().TypeOfSteak());
-        }
+            
+            transform.GetChild(0).gameObject.SetActive(true);
+            if (steakCooked == false) { StartCoroutine(CookSteak()); } 
+        }       
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.GetComponent<Food>() != null && other.GetComponent<Food>().TypeOfSteak() 
-            != SteakType.NotSteak && other.GetComponent<Food>().steakCooked() == false) 
+        transform.GetChild(0).gameObject.SetActive(false);
+        if (other.gameObject.CompareTag("Pan")) { steakCooked = true; }
+    }
+
+    IEnumerator CookSteak()
+    {
+        while(steakCooked == false)
         {
-            other.GetComponent<Food>().SteakAlreadyCooked();
-            cookingTimerImage.SetActive(false);
-            cookingTimerImage.GetComponent<Image>().fillAmount = 0;
-            ChangeSteak = 0;
-            _steak = steaks[0];
-            cookingTimer = 0;
+            cookTimer += Time.deltaTime; 
+            cookTimerImage.fillAmount = cookTimer/steakCookTimes[4];           
+            ChangeSteakType();           
+            yield return null;
         }
     }
 
-    private void CookSteak() 
+    private void ChangeSteakType()
     {
-        if(cookingTimer < steakCookTimes[4] && isCooking == true)
+        if (cookTimer >= steakCookTimes[changeSteak]) 
         {
-            cookingTimer += Time.deltaTime;
-            cookingTimerImage.GetComponent<Image>().fillAmount = cookingTimer/steakCookTimes[4];
-            ChangeSteakModel();
-            if(cookingTimer >= steakCookTimes[4]) { isCooking = false; }
-        }     
-    }
-
-    private void ChangeSteakModel()
-    {
-        if (cookingTimer !> steakCookTimes[ChangeSteak]) 
-        {
-            _steak = steaks[ChangeSteak];
-            _steak.GetComponent<Food>().ChangeSteak(steakType[ChangeSteak]); 
-            if(ChangeSteak != 4) { ChangeSteak++; Debug.Log(ChangeSteak); }   
+            GetComponent<Food>().CookSteak(steakTypes[changeSteak], steaks[changeSteak]);
+            //Debug.Log(GetComponent<Food>().TypeOfSteak());
+            if (changeSteak != 4) { changeSteak++; }
         }
-    } 
+    }
 }
