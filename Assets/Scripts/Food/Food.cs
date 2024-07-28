@@ -5,7 +5,7 @@ using UnityEngine;
 public class Food : MonoBehaviour
 {
     public FoodData food;
-    [SerializeField] private SteakType steakType; 
+    [SerializeField] private SteakType steakType;
     private GameObject _foodModel;
     private string _foodName;
 
@@ -18,25 +18,31 @@ public class Food : MonoBehaviour
         WellDone,
         Burnt
     }
-    private void Start()
+    private void OnEnable()
     {
         _foodName = food.name;
         _foodModel = food.foodmodel;
     }
-
-    public string FoodName(){return _foodName;}
     public GameObject FoodModel(){return _foodModel;}
 
-    public SteakType TypeOfSteak()
-    {
-        return steakType; 
-    }
+    public SteakType TypeOfSteak(){return steakType; }
+
+    public void ChangeSteak(SteakType steak) { steakType = steak; }
 
     //for cooking steak
-    public SteakType CookSteak(SteakType steak, GameObject steakModel)
+    public void CookSteak(SteakType steak, Food steakModel)
     {
         steakType = steak;
-        _foodModel = steakModel;
-        return steakType;
+        /*
+        for (int x = 0; x < steakModel.GetComponent<MeshRenderer>().sharedMaterials.Length; x++)
+        { GetComponent<MeshRenderer>().materials[x] = steakModel.GetComponent<MeshRenderer>().sharedMaterials[x]; }
+        */
+        GetComponent<MeshFilter>().mesh = steakModel.GetComponent<MeshFilter>().sharedMesh;
+
+        GetComponent<MeshRenderer>().materials[1].color = steakModel.GetComponent<MeshRenderer>().sharedMaterials[1].color;
+        
+        
+        
+        
     }
 }

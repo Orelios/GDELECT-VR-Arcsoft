@@ -10,8 +10,9 @@ public class CustomerOrder : MonoBehaviour
 {
     [SerializeField] private Order customerOrder;
 
-    public UnityEvent onFoodRecieved;
-    public bool isRightSteak = false;
+    public UnityEvent onWrongFoodRecieved;
+    public UnityEvent onProperFoodRecieved;
+    private bool isRightSteak;
     private bool isRightSideDish; 
     private void OnEnable()
     {
@@ -23,9 +24,18 @@ public class CustomerOrder : MonoBehaviour
     {
         if(other.gameObject.GetComponent<Plate>() != null) 
         { 
-            onFoodRecieved.Invoke();
             CheckFood(other.gameObject.GetComponent<Food>().TypeOfSteak(), 
                 other.gameObject.GetComponent<Food>().food.foodType); 
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.GetComponent<Plate>() != null)
+        {
+            CheckFood(other.gameObject.GetComponent<Food>().TypeOfSteak(),
+                other.gameObject.GetComponent<Food>().food.foodType);
+            Destroy(other.gameObject);
         }
     }
 
@@ -34,9 +44,13 @@ public class CustomerOrder : MonoBehaviour
         if(customerOrder.steak.GetComponent<Plate>().Steak() == steak && 
             customerOrder.steak.GetComponent<Plate>().SideDish() == sideDish)
         {
-            onFoodRecieved.Invoke();
+            onProperFoodRecieved.Invoke();
             isRightSteak =true;
             isRightSideDish = true;
         }
+        else { onWrongFoodRecieved.Invoke(); }
     }
+
+    public bool IsRightSteak { get { return isRightSteak; } }
+    public bool IsRightSideDish { get { return isRightSideDish; } }
 } 
