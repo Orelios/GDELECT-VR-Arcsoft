@@ -54,7 +54,10 @@ public class CustomerPatience : MonoBehaviour
         {  
             while(Vector3.Distance(transform.position, _waypoints[x].position) !> 0.5f) 
             {
-                transform.LookAt(_waypoints[x].position);   
+                Vector3 dir = _waypoints[x].position - transform.position; 
+                Quaternion rot = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 4 * Time.deltaTime);
+                rot.x = 0; rot.z = 0; 
+                transform.rotation = rot;
                 transform.position = Vector3.MoveTowards(transform.position, 
                     _waypoints[x].position, customerSpeed * Time.deltaTime);
                 yield return null;

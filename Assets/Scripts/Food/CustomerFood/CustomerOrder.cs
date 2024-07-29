@@ -13,7 +13,11 @@ public class CustomerOrder : MonoBehaviour
     public UnityEvent onWrongFoodRecieved;
     public UnityEvent onProperFoodRecieved;
     private bool isRightSteak;
-    private bool isRightSideDish; 
+    private bool isRightSideDish;
+    private void Start()
+    {
+        //test();
+    }
     private void OnEnable()
     {
         isRightSteak = false;
@@ -53,4 +57,6 @@ public class CustomerOrder : MonoBehaviour
 
     public bool IsRightSteak { get { return isRightSteak; } }
     public bool IsRightSideDish { get { return isRightSideDish; } }
+
+    public void test() { onProperFoodRecieved.Invoke(); }
 } 
