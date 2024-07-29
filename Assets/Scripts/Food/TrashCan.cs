@@ -6,6 +6,7 @@ public class TrashCan : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject); 
+        if (other.GetComponent<Food>() != null || other.GetComponent<Plate>() != null)
+        { Destroy(other.gameObject); }
     }
 }

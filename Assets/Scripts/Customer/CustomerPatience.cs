@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Security.Cryptography;
+using UnityEngine.Events; 
 
 public class CustomerPatience : MonoBehaviour
 {
@@ -20,10 +21,13 @@ public class CustomerPatience : MonoBehaviour
     private float patience;
     private float patienceTimer;
     [SerializeField] private Image patienceBar;
+
+    private ScoreManager scoreManager;
  
     private void OnEnable()
     {
         //Main stuff
+        scoreManager = FindAnyObjectByType<ScoreManager>();
         patienceTimer = customerOrder.customerPatience;
         patience = customerOrder.customerPatience;
         StartCoroutine(timer());
@@ -68,5 +72,9 @@ public class CustomerPatience : MonoBehaviour
     public void GetWaypoints(Transform waypoints, int waypointNumber) 
     { _waypoints[waypointNumber] = waypoints; }
 
-    public void CustomerRecievedRightOrder() { customerDone = true; }
+    public void CustomerRecievedRightOrder() { customerDone = true; 
+        scoreManager.RecievePoints(patienceBar.fillAmount); }
+
+    public void CustomerRecievedWrongOrder() { customerDone = true; }
+
 }

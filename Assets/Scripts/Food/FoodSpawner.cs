@@ -6,11 +6,19 @@ public class FoodSpawner : MonoBehaviour
 {
     [SerializeField] GameObject food;
     [SerializeField] Transform spawnPosition;
+    [SerializeField] private int spawnCooldown; 
 
-    private void Start(){ SpawnFood(); }
-    private void OnTriggerExit(Collider other){SpawnFood(); }
+    private void Start(){ StartCoroutine(SpawnFood()); }
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.GetComponent<Food>()!= null || other.GetComponent<Plate>() != null) 
+        { StartCoroutine(SpawnFood()); }      
+    }
 
-    private void SpawnFood() 
-    {GameObject food = Instantiate(this.food);
-        food.transform.position = spawnPosition.position; }
+    IEnumerator SpawnFood() 
+    {
+        yield return new WaitForSeconds(spawnCooldown); 
+        GameObject food = Instantiate(this.food);
+        food.transform.position = spawnPosition.position; 
+    }
 }

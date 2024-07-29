@@ -33,16 +33,9 @@ public class Food : MonoBehaviour
     public void CookSteak(SteakType steak, Food steakModel)
     {
         steakType = steak;
-        /*
-        for (int x = 0; x < steakModel.GetComponent<MeshRenderer>().sharedMaterials.Length; x++)
-        { GetComponent<MeshRenderer>().materials[x] = steakModel.GetComponent<MeshRenderer>().sharedMaterials[x]; }
-        */
+
         GetComponent<MeshFilter>().mesh = steakModel.GetComponent<MeshFilter>().sharedMesh;
 
-        GetComponent<MeshRenderer>().materials[1].color = steakModel.GetComponent<MeshRenderer>().sharedMaterials[1].color;
-        
-        
-        
-        
+        GetComponent<MeshRenderer>().materials[1].color = steakModel.GetComponent<MeshRenderer>().sharedMaterials[1].color;     
     }
 }

@@ -10,19 +10,18 @@ public class CustomerOrder : MonoBehaviour
 {
     [SerializeField] private Order customerOrder;
 
-    public UnityEvent onWrongFoodRecieved;
-    public UnityEvent onProperFoodRecieved;
+    public UnityEvent onWrongFoodRecieved = new UnityEvent();
+    public UnityEvent onProperFoodRecieved = new UnityEvent();
     private bool isRightSteak;
     private bool isRightSideDish;
-    private void Start()
-    {
-        //test();
-    }
+
+    private BonusScore scoreManager;
     private void OnEnable()
     {
+        scoreManager = FindAnyObjectByType<BonusScore>();
+        onProperFoodRecieved.AddListener(scoreManager.AddCustomerCount);
         isRightSteak = false;
         isRightSideDish = false;
-        //onFoodRecieved.AddListener(test());
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -37,16 +36,16 @@ public class CustomerOrder : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Plate>() != null)
         {
-            CheckFood(other.gameObject.GetComponent<Food>().TypeOfSteak(),
-                other.gameObject.GetComponent<Food>().food.foodType);
+            CheckFood(other.gameObject.GetComponent<Plate>().Steak(),
+                other.gameObject.GetComponent<Plate>().SideDish());
             Destroy(other.gameObject);
         }
     }
 
     private void CheckFood(SteakType steak, MainOrSideDish sideDish)
     {
-        if(customerOrder.steak.GetComponent<Plate>().Steak() == steak && 
-            customerOrder.steak.GetComponent<Plate>().SideDish() == sideDish)
+        if(customerOrder.steak.GetComponent<Food>().TypeOfSteak() == steak && 
+            customerOrder.sideDish.GetComponent<Food>().food.foodType == sideDish)
         {
             onProperFoodRecieved.Invoke();
             isRightSteak =true;
@@ -57,6 +56,4 @@ public class CustomerOrder : MonoBehaviour
 
     public bool IsRightSteak { get { return isRightSteak; } }
     public bool IsRightSideDish { get { return isRightSideDish; } }
-
-    public void test() { onProperFoodRecieved.Invoke(); }
 } 

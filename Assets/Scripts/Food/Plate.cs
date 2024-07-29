@@ -7,42 +7,55 @@ using static FoodData;
 public class Plate : MonoBehaviour
 {
     [SerializeField] private SteakType steak; 
-    [SerializeField] private MainOrSideDish sideDish;
+    [SerializeField] private MainOrSideDish sidedishType;
+    [SerializeField] private GameObject[] sidedishModels; 
 
     private bool steakOnPlate;
-    private bool sidedishOnPlate; 
+    private bool sidedishOnPlate;
+
+    private void OnEnable()
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+        for (int x = 0; x < sidedishModels.Length; x++) 
+        { sidedishModels[x].gameObject.SetActive(false); }
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<Food>() != null)
+        if (other.gameObject.GetComponent<Food>() != null)
         {
-            if (other.GetComponent<Food>().food.foodType == MainOrSideDish.Steak && steakOnPlate == false)
+            if (other.gameObject.GetComponent<Food>().food.foodType ==
+                MainOrSideDish.Steak && steakOnPlate == false)
             {
-                GetFoodModel(0, other.gameObject); 
-                steak = other.GetComponent<Food>().TypeOfSteak();
-                steakOnPlate = true; 
+                GetSteakModel(0, other.gameObject);
+                steak = other.gameObject.GetComponent<Food>().TypeOfSteak();
+                steakOnPlate = true;
+                Destroy(other.gameObject);
             }
-            else if(sidedishOnPlate == false)
+            else if (sidedishOnPlate == false)
             {
-                GetFoodModel(1, other.gameObject);
-                sideDish = other.GetComponent<Food>().food.foodType; 
+                //GetSteakModel(1, other.gameObject);
+                sidedishType = other.gameObject.GetComponent<Food>().food.foodType;
+                GetSidedisheModel(sidedishType);
                 sidedishOnPlate = true;
-            }
+                Destroy(other.gameObject);
+            }          
         }
     }
 
-    private void GetFoodModel(int childNum, GameObject other) //rework this logic cause of the models issue
+    private void GetSteakModel(int childNum, GameObject other) //rework this logic cause of the models issue
     {
-        transform.GetChild(childNum).GetComponent<MeshFilter>().mesh
-            = other.GetComponent<MeshFilter>().mesh;
+        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(0).GetComponent<MeshRenderer>().materials[1].color = 
+            other.GetComponent<MeshRenderer>().sharedMaterials[1].color;
+    }
 
-        transform.GetChild(childNum).GetComponent<MeshCollider>().sharedMesh
-            = other.GetComponent<MeshFilter>().sharedMesh;
-
-        Material[] materials = other.GetComponent<MeshRenderer>().sharedMaterials;
-        for (int x = 0; x < materials.Length; x++)
-        { transform.GetChild(childNum).GetComponent<MeshRenderer>().materials[x].color = materials[x].color; }
+    private void GetSidedisheModel(MainOrSideDish sidedish)
+    {
+        if(sidedish == MainOrSideDish.MashPotatoes) { sidedishModels[0].gameObject.SetActive(true); }
+        else if(sidedish == MainOrSideDish.GarlicBred) { sidedishModels[1].gameObject.SetActive(true); }
+        else if (sidedish == MainOrSideDish.Fries) { sidedishModels[2].gameObject.SetActive(true); }
     }
 
     public SteakType Steak(){return steak;}
-    public MainOrSideDish SideDish() { return sideDish;}
+    public MainOrSideDish SideDish() { return sidedishType;}
 }
