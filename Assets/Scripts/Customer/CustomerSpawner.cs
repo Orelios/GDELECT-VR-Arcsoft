@@ -8,6 +8,7 @@ public class CustomerSpawner : MonoBehaviour
     [Header("Customer Settings")]
     public GameObject[] customerType; 
     public float minSpawnTimer, maxSpawnTimer;
+    [SerializeField] private Transform spawn; 
 
     [Header("Exit Waypoints")]
     [SerializeField] private Transform[] waypoints; 
@@ -18,13 +19,12 @@ public class CustomerSpawner : MonoBehaviour
     { 
         int spawnCustomerAtStart = UnityEngine.Random.Range(1, 4);
 
-        if (customerSpawnLimit != 0 && spawnCustomerAtStart == 1 ||
+        if (customerSpawnLimit! <= 0 && spawnCustomerAtStart == 1 ||
             spawnCustomerAtStart == 2)
         {
             StartCoroutine(SpawnCustomer());
-            customerSpawnLimit--;
         }
-        else if(customerSpawnLimit != 0 && spawnCustomerAtStart == 3 ||
+        else if(customerSpawnLimit !<= 0 && spawnCustomerAtStart == 3 ||
             spawnCustomerAtStart == 4)
         {
             StartCoroutine(SpawnTrigger());
@@ -41,28 +41,32 @@ public class CustomerSpawner : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Customer") || other.CompareTag("Trigger") && customerSpawnLimit != 0) 
+        if (other.CompareTag("Customer") || other.CompareTag("Trigger") && customerSpawnLimit !<= 0) 
         { 
             StartCoroutine(SpawnCustomer());
-            customerSpawnLimit --;
+            Debug.Log(customerSpawnLimit);
         }
     }
 
     IEnumerator SpawnCustomer()
     {
-        float spawnTime = UnityEngine.Random.Range(minSpawnTimer, maxSpawnTimer);
+        if(customerSpawnLimit > 0)
+        {
+            float spawnTime = UnityEngine.Random.Range(minSpawnTimer, maxSpawnTimer);
 
-        yield return new WaitForSeconds(spawnTime);
-        
-        int customerType = UnityEngine.Random.Range(0, this.customerType.Length -2);
-        GameObject customer = Instantiate(this.customerType[customerType]);
-        customer.transform.position = transform.position;        
+            yield return new WaitForSeconds(spawnTime);
+
+            int customerType = UnityEngine.Random.Range(0, this.customerType.Length - 2);
+            GameObject customer = Instantiate(this.customerType[customerType]);
+            customer.transform.position = spawn.position;
+            customerSpawnLimit--;
+        } 
     }
 
     IEnumerator SpawnTrigger()
     {
         GameObject customer = Instantiate(customerType[customerType.Length - 1]);
-        customer.transform.position = transform.position;
+        customer.transform.position = spawn.position;
         float spawnTime = UnityEngine.Random.Range(minSpawnTimer, maxSpawnTimer);
 
         yield return new WaitForSeconds(spawnTime);

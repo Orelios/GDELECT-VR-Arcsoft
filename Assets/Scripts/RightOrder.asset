@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77b3950d816da074796e594469a099aa, type: 3}
-  m_Name: Steak
+  m_Script: {fileID: 11500000, guid: 93e06c9601c201c44a7a9ffbec52da31, type: 3}
+  m_Name: RightOrder
   m_EditorClassIdentifier: 
-  foodName: Steak
-  foodmodel: {fileID: 0}
-  foodType: 0

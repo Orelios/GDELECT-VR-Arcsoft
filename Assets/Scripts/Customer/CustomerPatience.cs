@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Security.Cryptography;
+using UnityEngine.Events; 
 
 public class CustomerPatience : MonoBehaviour
 {
@@ -20,10 +21,19 @@ public class CustomerPatience : MonoBehaviour
     private float patience;
     private float patienceTimer;
     [SerializeField] private Image patienceBar;
+
+    [Header("Patience bar settings")]
+    [SerializeField] private Image foodImages; 
+    private ScoreManager scoreManager;
  
     private void OnEnable()
     {
         //Main stuff
+        foodImages.transform.GetChild(0).GetComponent<Image>().sprite = 
+            customerOrder.steakImage.GetComponent<Image>().sprite;
+        foodImages.transform.GetChild(1).GetComponent<Image>().sprite =
+            customerOrder.sideDishImage.GetComponent<Image>().sprite;
+        scoreManager = FindAnyObjectByType<ScoreManager>();
         patienceTimer = customerOrder.customerPatience;
         patience = customerOrder.customerPatience;
         StartCoroutine(timer());
@@ -43,6 +53,7 @@ public class CustomerPatience : MonoBehaviour
 
         if (customerDone == true)
         {
+            foodImages.gameObject.SetActive(false);
             StartCoroutine(CustomerExit()); 
         }
     }
@@ -54,7 +65,10 @@ public class CustomerPatience : MonoBehaviour
         {  
             while(Vector3.Distance(transform.position, _waypoints[x].position) !> 0.5f) 
             {
-                transform.LookAt(_waypoints[x].position);   
+                Vector3 dir = _waypoints[x].position - transform.position; 
+                Quaternion rot = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 4 * Time.deltaTime);
+                rot.x = 0; rot.z = 0; 
+                transform.rotation = rot;
                 transform.position = Vector3.MoveTowards(transform.position, 
                     _waypoints[x].position, customerSpeed * Time.deltaTime);
                 yield return null;
@@ -65,5 +79,10 @@ public class CustomerPatience : MonoBehaviour
     public void GetWaypoints(Transform waypoints, int waypointNumber) 
     { _waypoints[waypointNumber] = waypoints; }
 
-    public void CustomerRecievedRightOrder() { customerDone = true; }
+    public void CustomerRecievedRightOrder() { customerDone = true; 
+        scoreManager.RecievePoints(patienceBar.fillAmount); 
+    }
+
+    public void CustomerRecievedWrongOrder() { customerDone = true;  }
+
 }
