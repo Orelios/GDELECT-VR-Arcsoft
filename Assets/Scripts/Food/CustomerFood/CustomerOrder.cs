@@ -26,9 +26,11 @@ public class CustomerOrder : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.GetComponent<Plate>() != null) 
-        { 
-            CheckFood(other.gameObject.GetComponent<Food>().TypeOfSteak(), 
-                other.gameObject.GetComponent<Food>().food.foodType); 
+        {
+            Debug.Log("Works");
+            CheckFood(other.gameObject.GetComponent<Plate>().Steak(),
+                other.gameObject.GetComponent<Plate>().SideDish());
+            other.transform.parent.gameObject.SetActive(false);
         }
     }
 
@@ -36,6 +38,7 @@ public class CustomerOrder : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Plate>() != null)
         {
+            Debug.Log("Works");
             CheckFood(other.gameObject.GetComponent<Plate>().Steak(),
                 other.gameObject.GetComponent<Plate>().SideDish());
             Destroy(other.gameObject);

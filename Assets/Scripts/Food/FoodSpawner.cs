@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class FoodSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject food;
-    [SerializeField] Transform spawnPosition;
-    [SerializeField] private int spawnCooldown; 
+    [SerializeField] private GameObject itemPrefab; 
+    [SerializeField] private Transform spawnPoint; 
+    private GameObject currentItem; 
 
-    private void Start(){ StartCoroutine(SpawnFood()); }
+    private void Start()
+    {
+        SpawnItem(); 
+    }
+
+    private void SpawnItem()
+    {
+        currentItem = Instantiate(itemPrefab, spawnPoint.position, spawnPoint.rotation);
+    }
+
     private void OnTriggerExit(Collider other)
-    {
-        if(other.GetComponent<Food>()!= null || other.GetComponent<Plate>() != null) 
-        { StartCoroutine(SpawnFood()); }      
-    }
-
-    IEnumerator SpawnFood() 
-    {
-        yield return new WaitForSeconds(spawnCooldown); 
-        GameObject food = Instantiate(this.food);
-        food.transform.position = spawnPosition.position; 
-    }
+    { if (other.gameObject == currentItem){SpawnItem(); }}
 }

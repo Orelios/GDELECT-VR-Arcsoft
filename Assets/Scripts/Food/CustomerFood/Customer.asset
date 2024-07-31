@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f4a65b6e505434e90da4cf1856ff24, type: 3}
   m_Name: Customer
   m_EditorClassIdentifier: 
-  steak: {fileID: 0}
-  sideDish: {fileID: 0}
+  steak: {fileID: 49363364901250893, guid: 08f285d7b2fa6df4dad833e4787958fa, type: 3}
+  sideDish: {fileID: 6355720319645000840, guid: 335e00a5738ee554d8803b3f06fbadd8, type: 3}
+  steakImage: {fileID: 1853565289297133901, guid: 5822979b74a51b34fbff01fa1e77b4b3, type: 3}
+  sideDishImage: {fileID: 3274459136085887839, guid: a36d2dd238d50c64ebb66435bf0874e0, type: 3}
   customerPatience: 5
-  exitPath: []

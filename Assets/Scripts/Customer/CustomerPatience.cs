@@ -22,11 +22,17 @@ public class CustomerPatience : MonoBehaviour
     private float patienceTimer;
     [SerializeField] private Image patienceBar;
 
+    [Header("Patience bar settings")]
+    [SerializeField] private Image foodImages; 
     private ScoreManager scoreManager;
  
     private void OnEnable()
     {
         //Main stuff
+        foodImages.transform.GetChild(0).GetComponent<Image>().sprite = 
+            customerOrder.steakImage.GetComponent<Image>().sprite;
+        foodImages.transform.GetChild(1).GetComponent<Image>().sprite =
+            customerOrder.sideDishImage.GetComponent<Image>().sprite;
         scoreManager = FindAnyObjectByType<ScoreManager>();
         patienceTimer = customerOrder.customerPatience;
         patience = customerOrder.customerPatience;
@@ -47,6 +53,7 @@ public class CustomerPatience : MonoBehaviour
 
         if (customerDone == true)
         {
+            foodImages.gameObject.SetActive(false);
             StartCoroutine(CustomerExit()); 
         }
     }
@@ -73,8 +80,9 @@ public class CustomerPatience : MonoBehaviour
     { _waypoints[waypointNumber] = waypoints; }
 
     public void CustomerRecievedRightOrder() { customerDone = true; 
-        scoreManager.RecievePoints(patienceBar.fillAmount); }
+        scoreManager.RecievePoints(patienceBar.fillAmount); 
+    }
 
-    public void CustomerRecievedWrongOrder() { customerDone = true; }
+    public void CustomerRecievedWrongOrder() { customerDone = true;  }
 
 }

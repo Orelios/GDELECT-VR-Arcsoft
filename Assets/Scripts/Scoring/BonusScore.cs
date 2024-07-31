@@ -34,11 +34,11 @@ public class BonusScore : MonoBehaviour
         customerServedCounter = 0;
         CustomerWaitTimer = CustomerCounterWaitTime;
         bonusPointsTimer = bonusPointsActiveTime;
-        CustomerTimerBar = transform.GetChild(0).transform.
+        CustomerTimerBar = transform.GetChild(2).transform.
             GetChild(1).transform.GetChild(0).GetComponent<Image>();
-        customerServedCountText = transform.GetChild(0).
+        customerServedCountText = transform.GetChild(2).
             transform.GetChild(0).GetComponent<TMP_Text>();
-        transform.GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(2).gameObject.SetActive(false);
         //StartCoroutine(CustomerCountComboWindow());
     }
 
@@ -63,7 +63,7 @@ public class BonusScore : MonoBehaviour
 
     IEnumerator CustomerCountComboWindow()
     {
-        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(2).gameObject.SetActive(true);
         while (isCustomerComboWindowTrue == true)
         {
             CustomerWaitTimer -= Time.deltaTime;
@@ -76,16 +76,16 @@ public class BonusScore : MonoBehaviour
             {
                 isBonusPointsActive = true;
                 CustomerTimerBar.fillAmount = 1;
-                transform.GetChild(0).gameObject.SetActive(false);
+                transform.GetChild(2).gameObject.SetActive(false);
                 bonusPointsTimer = bonusPointsActiveTime;
                 customerServedCountText.text = "";
             }
 
-            if(customerServedCounter == customerServedLimit) //customerServedCounter == customerServedLimit
+            if(customerServedCounter == customerServedLimit) 
             {                 
                 isBonusPointsActive = true;
                 CustomerTimerBar.fillAmount = 1;
-                transform.GetChild(0).gameObject.SetActive(false);
+                transform.GetChild(2).gameObject.SetActive(false);
                 bonusPointsTimer = bonusPointsActiveTime;               
                 customerServedCountText.text = "";
                 StartCoroutine(BonusPointsActive());
@@ -97,7 +97,7 @@ public class BonusScore : MonoBehaviour
     }
     IEnumerator BonusPointsActive() 
     {      
-        transform.GetChild(0).gameObject.SetActive(true);
+        transform.GetChild(2).gameObject.SetActive(true);
         customerServedCountText.text = "Magister Mode";
         while (bonusPointsTimer >= 0)
         {
@@ -111,7 +111,7 @@ public class BonusScore : MonoBehaviour
                 customerServedCountText.text = "";
                 CustomerTimerBar.fillAmount = 1;
                 CustomerWaitTimer = CustomerCounterWaitTime;
-                transform.GetChild(0).gameObject.SetActive(false);
+                transform.GetChild(2).gameObject.SetActive(false);
             }
             yield return null;
         }

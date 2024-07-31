@@ -17,7 +17,7 @@ public class Exit : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<CustomerOrder>() != null)
+        if(other.GetComponent<CustomerOrder>() != null && gameOver == false)
         {
             if(other.GetComponent<CustomerOrder>().IsRightSteak == true 
                 && other.GetComponent<CustomerOrder>().IsRightSideDish == true) { }
