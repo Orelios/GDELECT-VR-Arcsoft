@@ -25,10 +25,13 @@ public class CustomerPatience : MonoBehaviour
     [Header("Patience bar settings")]
     [SerializeField] private Image foodImages; 
     private ScoreManager scoreManager;
+
+    private CustomerSpawner _customerLimitRef; 
  
     private void OnEnable()
     {
         //Main stuff
+        CustomerSpawner.customerSpawnLimit -= 1; 
         foodImages.transform.GetChild(0).GetComponent<Image>().sprite = 
             customerOrder.steakImage.GetComponent<Image>().sprite;
         foodImages.transform.GetChild(1).GetComponent<Image>().sprite =
