@@ -17,6 +17,7 @@ public class FireProjectile : MonoBehaviour
     }
     public void Fire(ActivateEventArgs args)
     {
+        AudioManager.instance.PlayOneShot(FModEvents.instance.shoot, this.transform.position);
         if (GetComponent<Plate>() != null) {
             
         }

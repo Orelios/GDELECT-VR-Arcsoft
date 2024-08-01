@@ -53,6 +53,7 @@ public class CustomerOrder : MonoBehaviour
             onProperFoodRecieved.Invoke();
             isRightSteak =true;
             isRightSideDish = true;
+            AudioManager.instance.PlayOneShot(FModEvents.instance.customerHitCorrect, this.transform.position);
         }
         else { onWrongFoodRecieved.Invoke(); }
     }

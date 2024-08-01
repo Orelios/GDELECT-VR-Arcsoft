@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; 
+using TMPro;
+using FMOD.Studio;
 using static Food;
 
 public class Cooking : MonoBehaviour
@@ -17,7 +18,16 @@ public class Cooking : MonoBehaviour
     private float cookTimer;
     private int changeSteak; 
     private bool steakCooked;
-    
+
+    //audio
+
+    private EventInstance meatCooking;
+
+    private void Start()
+    {
+        Debug.Log("Initialized Instance");
+        meatCooking = AudioManager.instance.CreateEventInstance(FModEvents.instance.meatCooking);
+    }
 
     private void OnEnable()
     {
@@ -31,7 +41,7 @@ public class Cooking : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Pan")) 
         {
-            
+            meatCooking.start();
             transform.GetChild(0).gameObject.SetActive(true);
             if (steakCooked == false) { StartCoroutine(CookSteak()); } 
         }       
@@ -39,18 +49,24 @@ public class Cooking : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        meatCooking.stop(STOP_MODE.IMMEDIATE);
         transform.GetChild(0).gameObject.SetActive(false);
         if (other.gameObject.CompareTag("Pan")) { steakCooked = true; }
     }
 
     IEnumerator CookSteak()
     {
-        while(steakCooked == false)
+        while (steakCooked == false)
         {
             cookTimer += Time.deltaTime; 
             cookTimerImage.fillAmount = cookTimer/steakCookTimes[4];           
             ChangeSteakType();           
             yield return null;
+
+            if (cookTimerImage.fillAmount == 99)
+            {
+                AudioManager.instance.PlayOneShot(FModEvents.instance.burnt, this.transform.position);
+            }
         }
     }
 
