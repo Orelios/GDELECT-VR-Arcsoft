@@ -20,7 +20,10 @@ public class FoodSpawner : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     { 
-        if (other.gameObject == currentItem){SpawnItem(); }
-        if(other.gameObject.GetComponent<Plate>() != null) { SpawnItem(); }
+        if (other.gameObject == currentItem && 
+            other.gameObject.GetComponent<Plate>() == null && 
+            other.gameObject.GetComponent<FireProjectile>() == null) { SpawnItem(); Debug.Log("plate1"); }
+
+        if(other.gameObject.GetComponent<Plate>() != null) { SpawnItem(); Debug.Log("plate2"); }
     }
 }
