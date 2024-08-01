@@ -19,5 +19,8 @@ public class FoodSpawner : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other)
-    { if (other.gameObject == currentItem){SpawnItem(); }}
+    { 
+        if (other.gameObject == currentItem){SpawnItem(); }
+        if(other.gameObject.GetComponent<Plate>() != null) { SpawnItem(); }
+    }
 }
