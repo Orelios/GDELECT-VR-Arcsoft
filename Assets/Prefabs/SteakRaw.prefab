@@ -165,11 +165,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   steakCookTimes:
-  - 5
+  - 2
+  - 4
+  - 6
+  - 8
   - 10
-  - 15
-  - 20
-  - 25
   steaks:
   - {fileID: 2194411186857701138}
   - {fileID: 2194411186857701138, guid: 90f2f2f4e1fbc21409b4c8a92bb3fbe0, type: 3}
