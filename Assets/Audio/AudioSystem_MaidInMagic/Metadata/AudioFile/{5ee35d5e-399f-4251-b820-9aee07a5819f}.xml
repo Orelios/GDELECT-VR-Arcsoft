@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{5ee35d5e-399f-4251-b820-9aee07a5819f}">
+		<property name="assetPath">
+			<value>SFX/20220416_Shopkeepers Bell Sound Effects [Free Audio].mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>6.3477551020408161</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ffdfdf68-9ff0-4fb1-aa25-1d70fa1a7b8c}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{a3a5426d-e9f1-4474-a358-654b4ab069d8}">
+		<property name="name">
+			<value>oil_intensity</value>
+		</property>
+		<relationship name="folder">
+			<destination>{f04187a3-0db7-4d0e-8abd-16aeb05f616e}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{e31a5248-d016-41cf-8a12-005fe5b44e75}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{e31a5248-d016-41cf-8a12-005fe5b44e75}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{37cef132-d5e9-4b24-9840-073fbc797794}">
+		<property name="assetPath">
+			<value>Swishes/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ffdfdf68-9ff0-4fb1-aa25-1d70fa1a7b8c}</destination>
+		</relationship>
+	</object>
+</objects>
