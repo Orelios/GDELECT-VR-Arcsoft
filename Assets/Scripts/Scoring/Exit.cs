@@ -8,20 +8,20 @@ public class Exit : MonoBehaviour
     [SerializeField] private Material[] materials;
 
     private int lives;
-    private bool gameOver; 
+    private bool gameOver;
 
     private void Start()
     {
         lives = 3;
-        gameOver = false; 
+        gameOver = false;
     }
     private void OnTriggerEnter(Collider other)
     {
         if(other.GetComponent<CustomerOrder>() != null && gameOver == false)
         {
-            if(other.GetComponent<CustomerOrder>().IsRightSteak == true 
+            if(other.GetComponent<CustomerOrder>().IsRightSteak == true
                 && other.GetComponent<CustomerOrder>().IsRightSideDish == true) { }
-            else 
+            else
             {
                 lives--;
                 crystals[lives].GetComponent<MeshRenderer>().material = materials[lives];
@@ -29,5 +29,10 @@ public class Exit : MonoBehaviour
             }
         }
         Destroy(other.gameObject);
+    }
+
+    bool IsGameOver()
+    {
+        return gameOver;
     }
 }

@@ -6,8 +6,8 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private int[] scoresToAdd;
-    [SerializeField]private int score;
-    [SerializeField]private int bonusMultiplier;
+    [SerializeField] private int score;
+    [SerializeField] private int bonusMultiplier;
     [SerializeField] private TMP_Text scoreText;
 
     private void Start() //Add text component once ma figure out ang canvas situation
