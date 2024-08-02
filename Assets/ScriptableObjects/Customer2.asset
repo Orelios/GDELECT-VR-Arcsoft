@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f4a65b6e505434e90da4cf1856ff24, type: 3}
+  m_Name: Customer2
+  m_EditorClassIdentifier: 
+  steak: {fileID: 49363364901250893, guid: 0ed27112198ac234d9fb59cbc3998722, type: 3}
+  sideDish: {fileID: 7822140737301109399, guid: aebc7913e607eef46801545cb762074b, type: 3}
+  steakImage: {fileID: 8944532436686083531, guid: de10f50d87f03c1459faf2e431aa84ee, type: 3}
+  sideDishImage: {fileID: 332381347685750428, guid: e381dd51cb2866e478b52c1ddf643820, type: 3}
+  customerPatience: 60
