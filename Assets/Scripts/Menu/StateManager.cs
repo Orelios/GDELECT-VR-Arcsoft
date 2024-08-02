@@ -1,14 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StateManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> gameplayObjects;
     [SerializeField] private List<MonoBehaviour> gameplayScripts;
     // This is super hardcoded rn
+    [SerializeField] private GameObject startScreen;
+    [SerializeField] private GameObject endScreen;
 
-    public void EnableGameplayElements()
+    // Functions for state managing use
+    public void StartGameplay()
+    {
+        EnableGameplayElements();
+        //ResetGameplayElements();
+        startScreen.SetActive(false);
+        endScreen.SetActive(false);
+    }
+
+    public void EndGameplay()
+    {
+        DisableGameplayElements();
+        endScreen.SetActive(true);
+    }
+
+    public void EnableMainMenu()
+    {
+        EnableGameplayElements();
+        startScreen.SetActive(true);
+        endScreen.SetActive(false);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+        Debug.Log("Player has exit the game");
+    }
+
+    // Functions for making the state changes
+    private void EnableGameplayElements()
     {
         foreach (GameObject vrObject in gameplayObjects)
         {
@@ -21,12 +53,12 @@ public class StateManager : MonoBehaviour
         }
     }
 
-    public void ResetGameplayElements()
+    private void ResetGameplayElements()
     {
 
     }
 
-    public void DisableGameplayElements()
+    private void DisableGameplayElements()
     {
         foreach (GameObject vrObject in gameplayObjects)
         {
