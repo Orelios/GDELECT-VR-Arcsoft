@@ -2078,6 +2078,7 @@ MonoBehaviour:
   - {fileID: -7281205552267141661, guid: b30ef6270e66dcf4cb92c3a097bc4370, type: 3}
   - {fileID: -7281205552267141661, guid: b30ef6270e66dcf4cb92c3a097bc4370, type: 3}
   - {fileID: -7281205552267141661, guid: b30ef6270e66dcf4cb92c3a097bc4370, type: 3}
+  stateManager: {fileID: 1261912727}
 --- !u!65 &238203206
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class Exit : MonoBehaviour
 {
     [SerializeField] private GameObject[] crystals;
     [SerializeField] private Material[] materials;
+    [SerializeField] private StateManager stateManager;
 
     private int lives;
     private bool gameOver;
@@ -25,14 +26,13 @@ public class Exit : MonoBehaviour
             {
                 lives--;
                 crystals[lives].GetComponent<MeshRenderer>().material = materials[lives];
-                if(lives <= 0) { gameOver = true; }
+                if(lives <= 0)
+                {
+                    gameOver = true;
+                    stateManager.EndGameplay();
+                }
             }
         }
         Destroy(other.gameObject);
-    }
-
-    bool IsGameOver()
-    {
-        return gameOver;
     }
 }
