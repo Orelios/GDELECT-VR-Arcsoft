@@ -34,7 +34,7 @@ public class CustomerWaveSpawner : MonoBehaviour
         {
             if (timer <= spawnIntervals[0])
             {
-                Debug.Log("1");
+                //Debug.Log("1");
                 for (int x = 0; x < 3; x++)
                 {
                     if (spawner != 2)
@@ -48,7 +48,7 @@ public class CustomerWaveSpawner : MonoBehaviour
             }
             else if (timer <= spawnIntervals[1])
             {
-                Debug.Log("2");
+                //Debug.Log("2");
                 for (int x = 0; x < 3; x++)
                 {
                     if (spawner != 6)
@@ -60,7 +60,7 @@ public class CustomerWaveSpawner : MonoBehaviour
             }
             else if (timer <= spawnIntervals[2])
             {
-                Debug.Log("3");
+                //Debug.Log("3");
                 for (int x = 0; x < 3; x++)
                 {
                     if (spawner != 9)
@@ -72,7 +72,7 @@ public class CustomerWaveSpawner : MonoBehaviour
             }
             else if (timer <= spawnIntervals[3])
             {
-                Debug.Log("4");
+                //Debug.Log("4");
                 for (int x = 0; x < 3; x++)
                 {
                     if (spawner != 12)
