@@ -47,6 +47,7 @@ public class CustomerSpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnTime);
 
             GameObject customer = Instantiate(customerType[customerVariant]);
+            AudioManager.instance.PlayOneShot(FModEvents.instance.customerSpawn, this.transform.position);
             //Debug.Log(customerVariant);
             customer.transform.position = spawn.position;
             if(customerSpawnLimit <= 0) { Destroy(customer); }

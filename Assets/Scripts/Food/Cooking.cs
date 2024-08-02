@@ -39,7 +39,8 @@ public class Cooking : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Pan")) 
-        {           
+        {
+            meatCooking.start();
             transform.GetChild(0).gameObject.SetActive(true);
             StartCoroutine(CookSteak());
         }       
@@ -59,11 +60,6 @@ public class Cooking : MonoBehaviour
             cookTimerImage.fillAmount = cookTimer/steakCookTimes[4];           
             ChangeSteakType();           
             yield return null;
-
-            if (cookTimerImage.fillAmount == 99)
-            {
-                AudioManager.instance.PlayOneShot(FModEvents.instance.burnt, this.transform.position);
-            }
         }
     }
 

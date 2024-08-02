@@ -7248,7 +7248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 469404420}
 --- !u!1001 &996085735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7960,6 +7960,8 @@ MonoBehaviour:
   - {fileID: 1826700721}
   startScreen: {fileID: 1399464802}
   endScreen: {fileID: 1608978861}
+  mainMenu: 0
+  gameplay: 1
 --- !u!4 &1261912728
 Transform:
   m_ObjectHideFlags: 0
@@ -9327,41 +9329,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4633eac36151c17498fb42936c2519e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <fireAmbience>k__BackingField:
+    Guid:
+      Data1: -695947550
+      Data2: 1306886976
+      Data3: -821303417
+      Data4: 251014255
+    Path: event:/FireAmbience
+  <restaurantAmbience>k__BackingField:
+    Guid:
+      Data1: -1657357039
+      Data2: 1148022862
+      Data3: 541661091
+      Data4: 1871279522
+    Path: event:/RestaurantAmbience
+  <music>k__BackingField:
+    Guid:
+      Data1: 1325286713
+      Data2: 1108395786
+      Data3: -1801319780
+      Data4: -368799481
+    Path: event:/Music/MaidInMagicMusic
   <pickUp>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1548588479
+      Data2: 1268645048
+      Data3: -1830115911
+      Data4: 1603919283
+    Path: event:/PickUp
   <shoot>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 1467224759
+      Data2: 1137565556
+      Data3: 384564875
+      Data4: 1986027593
+    Path: event:/Shoot
   <customerHitCorrect>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 133633161
+      Data2: 1120143069
+      Data3: -1798267732
+      Data4: -1699428387
+    Path: event:/CustomerHitCorrect
   <meatCooking>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 692882467
+      Data2: 1317000530
+      Data3: -106221127
+      Data4: 1418458694
+    Path: event:/Sizzling
   <burnt>k__BackingField:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -306596520
+      Data2: 1294528635
+      Data3: 1050223287
+      Data4: -1357253850
+    Path: event:/Burnt
+  <customerSpawn>k__BackingField:
+    Guid:
+      Data1: 1275854442
+      Data2: 1140578720
+      Data3: 1227527359
+      Data4: -1862810803
+    Path: event:/CustomerSpawn
+  <customerApproval>k__BackingField:
+    Guid:
+      Data1: -1998002206
+      Data2: 1268050010
+      Data3: -1184316229
+      Data4: -1205482146
+    Path: event:/CustomerApproval
+  <customerDisapproval>k__BackingField:
+    Guid:
+      Data1: -1780384667
+      Data2: 1089974506
+      Data3: -1906400092
+      Data4: -1561308159
+    Path: event:/CustomerDisapproval
+  <gameStart>k__BackingField:
+    Guid:
+      Data1: -2081044937
+      Data2: 1317382268
+      Data3: 1496886718
+      Data4: 268649555
+    Path: event:/Voicelines/StartGame
+  <gameEnd>k__BackingField:
+    Guid:
+      Data1: -681684611
+      Data2: 1270909704
+      Data3: 131719040
+      Data4: 1629259787
+    Path: event:/Voicelines/EndGame
+  <gameOver>k__BackingField:
+    Guid:
+      Data1: 1956466913
+      Data2: 1260146045
+      Data3: 816870273
+      Data4: -257018854
+    Path: event:/Voicelines/GameOver
 --- !u!1001 &1601924240
 PrefabInstance:
   m_ObjectHideFlags: 0

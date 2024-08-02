@@ -11,6 +11,14 @@ public class StateManager : MonoBehaviour
     [SerializeField] private GameObject startScreen;
     [SerializeField] private GameObject endScreen;
 
+    [Header("MainMenu")]
+    [SerializeField] private MusicState mainMenu;
+
+    [Header("Gameplay")]
+    [SerializeField] private MusicState gameplay;
+
+
+
     void Awake()
     {
         EnableGameObjects(false);
@@ -21,21 +29,25 @@ public class StateManager : MonoBehaviour
     // Functions for state managing use
     public void StartGameplay()
     {
+        AudioManager.instance.PlayOneShot(FModEvents.instance.gameStart, this.transform.position);
         // enable/disable gameplay stuff
         EnableGameObjects(true);
         //ResetGameplayElements();
         // show/hide the menu for this state
         startScreen.SetActive(false);
         endScreen.SetActive(false);
+        AudioManager.instance.SetMusicState(1);
     }
 
     public void EndGameplay()
     {
+        AudioManager.instance.PlayOneShot(FModEvents.instance.gameOver, this.transform.position);
         // enable/disable gameplay stuff
         EnableGameObjects(false);
         EnableScripts(false);
         // show/hide the menu for this state
         endScreen.SetActive(true);
+        AudioManager.instance.SetMusicState(0);
     }
 
     public void EnableMainMenu()
@@ -50,6 +62,7 @@ public class StateManager : MonoBehaviour
 
     public void ExitGame()
     {
+        AudioManager.instance.PlayOneShot(FModEvents.instance.gameEnd, this.transform.position);
         Application.Quit();
         Debug.Log("Player has exit the game");
     }

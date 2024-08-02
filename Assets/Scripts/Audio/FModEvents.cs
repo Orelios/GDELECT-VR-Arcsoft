@@ -5,6 +5,15 @@ using FMODUnity;
 
 public class FModEvents : MonoBehaviour
 {
+    [field: Header("Fire Ambience")]
+    [field: SerializeField] public EventReference fireAmbience { get; private set; }
+
+    [field: Header("Restaurant Ambience")]
+    [field: SerializeField] public EventReference restaurantAmbience { get; private set; }
+
+    [field: Header("Music")]
+    [field: SerializeField] public EventReference music { get; private set; }
+
     [field: Header ("Pick Up")]
     [field: SerializeField] public EventReference pickUp { get; private set; }
 
@@ -19,6 +28,26 @@ public class FModEvents : MonoBehaviour
 
     [field: Header("Burnt")]
     [field: SerializeField] public EventReference burnt { get; private set; }
+
+    [field: Header("CustomerSpawn")]
+    [field: SerializeField] public EventReference customerSpawn { get; private set; }
+
+    [field: Header("CustomerApproval")]
+    [field: SerializeField] public EventReference customerApproval { get; private set; }
+
+    [field: Header("CustomerDisapproval")]
+    [field: SerializeField] public EventReference customerDisapproval { get; private set; }
+
+    [field: Header("Game Start")]
+    [field: SerializeField] public EventReference gameStart { get; private set; }
+
+    [field: Header("Game End")]
+    [field: SerializeField] public EventReference gameEnd { get; private set; }
+
+    [field: Header("Game Over")]
+    [field: SerializeField] public EventReference gameOver { get; private set; }
+
+
     public static FModEvents instance { get; private set; }
 
     private void Awake()

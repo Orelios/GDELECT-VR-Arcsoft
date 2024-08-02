@@ -56,6 +56,7 @@ public class CustomerPatience : MonoBehaviour
 
         if (customerDone == true)
         {
+            AudioManager.instance.PlayOneShot(FModEvents.instance.customerDisapproval, this.transform.position);
             foodImages.gameObject.SetActive(false);
             StartCoroutine(CustomerExit()); 
         }
