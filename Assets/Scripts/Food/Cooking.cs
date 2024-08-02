@@ -31,7 +31,6 @@ public class Cooking : MonoBehaviour
 
     private void OnEnable()
     {
-        steakCooked = false;
         cookTimer = 0;
         changeSteak = 1;
         cookTimerImage.fillAmount = 0;
@@ -40,10 +39,9 @@ public class Cooking : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Pan")) 
-        {
-            meatCooking.start();
+        {           
             transform.GetChild(0).gameObject.SetActive(true);
-            if (steakCooked == false) { StartCoroutine(CookSteak()); } 
+            StartCoroutine(CookSteak());
         }       
     }
 
@@ -51,12 +49,11 @@ public class Cooking : MonoBehaviour
     {
         meatCooking.stop(STOP_MODE.IMMEDIATE);
         transform.GetChild(0).gameObject.SetActive(false);
-        if (other.gameObject.CompareTag("Pan")) { steakCooked = true; }
     }
 
     IEnumerator CookSteak()
     {
-        while (steakCooked == false)
+        while(cookTimer <= steakCookTimes[4])
         {
             cookTimer += Time.deltaTime; 
             cookTimerImage.fillAmount = cookTimer/steakCookTimes[4];           
@@ -75,7 +72,6 @@ public class Cooking : MonoBehaviour
         if (cookTimer >= steakCookTimes[changeSteak]) 
         {
             GetComponent<Food>().CookSteak(steakTypes[changeSteak], steaks[changeSteak]);
-            //Debug.Log(GetComponent<Food>().TypeOfSteak());
             if (changeSteak != 4) { changeSteak++; }
         }
     }
