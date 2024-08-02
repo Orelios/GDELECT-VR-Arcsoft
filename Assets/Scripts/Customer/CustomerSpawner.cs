@@ -47,7 +47,7 @@ public class CustomerSpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnTime);
 
             GameObject customer = Instantiate(customerType[customerVariant]);
-            Debug.Log(customerVariant);
+            //Debug.Log(customerVariant);
             customer.transform.position = spawn.position;
             if(customerSpawnLimit <= 0) { Destroy(customer); }
             //customerSpawnLimit--;
