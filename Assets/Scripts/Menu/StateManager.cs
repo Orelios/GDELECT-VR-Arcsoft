@@ -13,28 +13,37 @@ public class StateManager : MonoBehaviour
 
     void Awake()
     {
-        DisableGameplayElements();
+        EnableGameObjects(false);
+        EnableScripts(false);
         EnableMainMenu();
     }
 
     // Functions for state managing use
     public void StartGameplay()
     {
-        EnableGameplayElements();
+        // enable/disable gameplay stuff
+        EnableGameObjects(true);
         //ResetGameplayElements();
+        // show/hide the menu for this state
         startScreen.SetActive(false);
         endScreen.SetActive(false);
     }
 
     public void EndGameplay()
     {
-        DisableGameplayElements();
+        // enable/disable gameplay stuff
+        EnableGameObjects(false);
+        EnableScripts(false);
+        // show/hide the menu for this state
         endScreen.SetActive(true);
     }
 
     public void EnableMainMenu()
     {
-        DisableGameplayElements();
+        // enable/disable gameplay stuff
+        EnableGameObjects(false);
+        EnableScripts(false);
+        // show/hide the menu for this state
         startScreen.SetActive(true);
         endScreen.SetActive(false);
     }
@@ -46,34 +55,24 @@ public class StateManager : MonoBehaviour
     }
 
     // Functions for making the state changes
-    private void EnableGameplayElements()
+    private void EnableGameObjects(bool boolSet)
     {
         foreach (GameObject vrObject in gameplayObjects)
         {
-            vrObject.SetActive(true);
+            vrObject.SetActive(boolSet);
         }
+    }
 
+    private void EnableScripts(bool boolSet)
+    {
         foreach (var script in gameplayScripts)
         {
-            script.enabled = true;
+            script.enabled = boolSet;
         }
     }
 
     private void ResetGameplayElements()
     {
 
-    }
-
-    private void DisableGameplayElements()
-    {
-        foreach (GameObject vrObject in gameplayObjects)
-        {
-            vrObject.SetActive(true);
-        }
-
-        foreach (var script in gameplayScripts)
-        {
-            script.enabled = false;
-        }
     }
 }
