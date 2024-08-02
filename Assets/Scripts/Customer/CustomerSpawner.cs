@@ -13,10 +13,12 @@ public class CustomerSpawner : MonoBehaviour
     [Header("Exit Waypoints")]
     [SerializeField] private Transform[] waypoints; 
 
-    public static int customerSpawnLimit = 10; 
+    public static int customerSpawnLimit = 10;
+    private int customerVariant; 
 
     private void Start()
     {
+        customerVariant = 0; 
         StartCoroutine(SpawnCustomer());
     }
 
@@ -41,11 +43,11 @@ public class CustomerSpawner : MonoBehaviour
         if(customerSpawnLimit > 0)
         {
             float spawnTime = UnityEngine.Random.Range(minSpawnTimer, maxSpawnTimer);
-
+            customerVariant = UnityEngine.Random.Range(0, customerType.Length - 1);
             yield return new WaitForSeconds(spawnTime);
 
-            int customerType = UnityEngine.Random.Range(0, this.customerType.Length - 1);
-            GameObject customer = Instantiate(this.customerType[customerType]);
+            GameObject customer = Instantiate(customerType[customerVariant]);
+            //Debug.Log(customerVariant);
             customer.transform.position = spawn.position;
             if(customerSpawnLimit <= 0) { Destroy(customer); }
             //customerSpawnLimit--;
