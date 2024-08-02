@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86500f5838f668c4496465686dda95db, type: 3}
       propertyPath: m_Name
-      value: Chair (6)
+      value: TB2-Chair01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -414,7 +414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86500f5838f668c4496465686dda95db, type: 3}
       propertyPath: m_Name
-      value: Chair (4)
+      value: TB1-Chair02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1819,7 +1819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86500f5838f668c4496465686dda95db, type: 3}
       propertyPath: m_Name
-      value: Chair (2)
+      value: TS3-Chair01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3251,7 +3251,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86500f5838f668c4496465686dda95db, type: 3}
       propertyPath: m_Name
-      value: Chair (1)
+      value: TS1-Chair01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3414,7 +3414,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86500f5838f668c4496465686dda95db, type: 3}
       propertyPath: m_Name
-      value: Chair (5)
+      value: TB2-Chair03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3691,7 +3691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86500f5838f668c4496465686dda95db, type: 3}
       propertyPath: m_Name
-      value: Chair (5)
+      value: TB1-Chair01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4584,7 +4584,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86500f5838f668c4496465686dda95db, type: 3}
       propertyPath: m_Name
-      value: Chair (2)
+      value: TS2-Chair02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5540,7 +5540,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 763963453}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1261912727}
+        m_TargetAssemblyTypeName: StateManager, Assembly-CSharp
+        m_MethodName: StartGameplay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &763963453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5869,7 +5881,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 793025041}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1261912727}
+        m_TargetAssemblyTypeName: StateManager, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &793025041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5998,7 +6022,7 @@ Transform:
   m_GameObject: {fileID: 798474327}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5377179, y: 0.59995484, z: 0.71733}
+  m_LocalPosition: {x: -0.7031518, y: 3.3609636, z: 6.627572}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6008,7 +6032,7 @@ Transform:
   - {fileID: 665538374}
   - {fileID: 1739816236}
   - {fileID: 770619428}
-  m_Father: {fileID: 1818252529}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &802844958
 GameObject:
@@ -7789,7 +7813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86500f5838f668c4496465686dda95db, type: 3}
       propertyPath: m_Name
-      value: Chair (1)
+      value: TS3-Chair02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8420,8 +8444,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046d8c4e68db04a4ead312bca274c184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameplayObjects: []
-  gameplayScripts: []
+  gameplayObjects:
+  - {fileID: 798474327}
+  gameplayScripts:
+  - {fileID: 563899164}
+  - {fileID: 1756430445}
+  - {fileID: 684009994}
+  - {fileID: 248764785}
+  - {fileID: 1375747140}
+  - {fileID: 528207741}
+  - {fileID: 1494834472}
+  - {fileID: 1881306353}
+  - {fileID: 2072434180}
+  - {fileID: 1878968769}
+  - {fileID: 442241077}
+  - {fileID: 1826700721}
+  startScreen: {fileID: 1399464802}
+  endScreen: {fileID: 1608978861}
 --- !u!4 &1261912728
 Transform:
   m_ObjectHideFlags: 0
@@ -9014,7 +9053,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1367220929}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1261912727}
+        m_TargetAssemblyTypeName: StateManager, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1367220929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10076,7 +10127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86500f5838f668c4496465686dda95db, type: 3}
       propertyPath: m_Name
-      value: Chair (3)
+      value: TB1-Chair03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10604,7 +10655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86500f5838f668c4496465686dda95db, type: 3}
       propertyPath: m_Name
-      value: Chair (2)
+      value: TS1-Chair02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11438,7 +11489,6 @@ Transform:
   - {fileID: 1692006008}
   - {fileID: 134005572}
   - {fileID: 1817283764}
-  - {fileID: 798474328}
   - {fileID: 1368250178}
   - {fileID: 238203208}
   m_Father: {fileID: 0}
@@ -11509,7 +11559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86500f5838f668c4496465686dda95db, type: 3}
       propertyPath: m_Name
-      value: Chair (6)
+      value: TB2-Chair02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11611,13 +11661,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1261912726}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1261912727}
+        m_TargetAssemblyTypeName: StateManager, Assembly-CSharp
+        m_MethodName: StartGameplay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -12688,6 +12738,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameplayObjects: []
   gameplayScripts: []
+  startScreen: {fileID: 0}
+  endScreen: {fileID: 0}
 --- !u!1 &1967743991
 GameObject:
   m_ObjectHideFlags: 0
@@ -13341,7 +13393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86500f5838f668c4496465686dda95db, type: 3}
       propertyPath: m_Name
-      value: Chair (1)
+      value: TS2-Chair01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13854,6 +13906,7 @@ SceneRoots:
   - {fileID: 281290099}
   - {fileID: 1318771176}
   - {fileID: 580401596}
+  - {fileID: 798474328}
   - {fileID: 293382598}
   - {fileID: 1851511745}
   - {fileID: 1744946913}
