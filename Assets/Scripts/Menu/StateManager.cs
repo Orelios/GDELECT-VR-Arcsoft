@@ -11,6 +11,12 @@ public class StateManager : MonoBehaviour
     [SerializeField] private GameObject startScreen;
     [SerializeField] private GameObject endScreen;
 
+    void Awake()
+    {
+        DisableGameplayElements();
+        EnableMainMenu();
+    }
+
     // Functions for state managing use
     public void StartGameplay()
     {
@@ -28,7 +34,7 @@ public class StateManager : MonoBehaviour
 
     public void EnableMainMenu()
     {
-        EnableGameplayElements();
+        DisableGameplayElements();
         startScreen.SetActive(true);
         endScreen.SetActive(false);
     }
