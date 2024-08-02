@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; 
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] private int[] scoresToAdd; 
+    [SerializeField] private int[] scoresToAdd;
     [SerializeField]private int score;
     [SerializeField]private int bonusMultiplier;
-    [SerializeField] private TMP_Text scoreText; 
+    [SerializeField] private TMP_Text scoreText;
 
     private void Start() //Add text component once ma figure out ang canvas situation
     {
         score = 0;
         scoreText.text = "Score: " + score;
-        bonusMultiplier = 1; 
+        bonusMultiplier = 1;
     }
 
     public void RecievePoints(float barPercentage)
@@ -27,5 +27,10 @@ public class ScoreManager : MonoBehaviour
     }
 
     public void MultiplierActive() { bonusMultiplier = 2; }
-    public void MultiplierInactive() { bonusMultiplier = 1; } 
+    public void MultiplierInactive() { bonusMultiplier = 1; }
+
+    public int GetScore()
+    {
+        return score;
+    }
 }
