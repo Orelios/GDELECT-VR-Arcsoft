@@ -14,7 +14,7 @@ public class StateManager : MonoBehaviour
     void Awake()
     {
         EnableGameObjects(false);
-        EnableScripts(false);
+        //EnableScripts(false);
         EnableMainMenu();
     }
 
